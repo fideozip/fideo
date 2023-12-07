@@ -13,21 +13,22 @@ services:
       - /etc/nginx/proxy.conf:/etc/nginx/conf.d/my_proxy.conf:ro
       - ./:/etc/nginx/certs
   mongodb:
-    image: mongo:5.0
+    image: mongo:4.4
     container_name: mongodb_container
     restart: always
     ports:
-      - 27018:27017
+      - 27017:27017
     networks:
       - backend
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root123
     volumes:
-      - /home/fideo/bd/mongodb_data:/data/db
+      - ./tallarin/mongodb_data:/data/db
 
 networks:
   backend:
   default:
     external:
       name: proxy
+
